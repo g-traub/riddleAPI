@@ -84,7 +84,7 @@ if (isset($amount) && isset($category)) {
   <form>
     <div class="form-group">
       <label for="amount">Nombre de devinettes</label>
-      <input class="form-control" type="number" min=0 max=96 name="amount" id="amount">
+      <input class="form-control" type="number" value="10" min=0 max=96 name="amount" id="amount">
       <small id="AmountHelp" class="form-text text-muted">Si il n'y pas suffisament de devinettes pour une catégorie donnée le maximum pour la catégorie sera renvoyé.</small>
     </div>
     <div class="form-group">
