@@ -8,7 +8,10 @@
 
     <body class="bg-dark">
       <header class="navbar navbar-dark bg-primary">
-          <h1 class="text-light">Devinettes API</h1>
+        <div class="container text-light" href="#">
+          Devinettes API
+          <img src="./assets/logo.svg" width="60" height="60" class="d-inline-block align-bottom" alt="">
+        </div>
       </header>
       <div class="container">
 
@@ -60,7 +63,7 @@ if (isset($amount) && isset($category)) {
     <p>
       Préciser la catégorie voulue, si aucune catégorie n'est précisée des devinettes de toutes les catégories seront renvoyées.
       exemple :
-      <div class="alert alert-light" >http://localhost:8888/scrapedDataAPI_PHP/api/api.php?category=sport</div>
+      <div class="alert alert-light" >http://localhost:8888/scrapedDataAPI_PHP/api/api.php?category=Sport</div>
     </p>
     <h5>Liste des catégories : </h5>
     <ul class="list-group list-group-flush">
