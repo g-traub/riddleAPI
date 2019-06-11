@@ -4,9 +4,36 @@ $categories = ['Alphabet', 'Animaux', 'Bizarre', 'Charade', 'Compliquée', 'Diff
 
 ob_start(); ?>
 <div class="my-4 fluid-container">
-  <div class="d-none alert alert-success" role="alert">
+  <div class="
+  
+  <?php 
+  if ((isset($_GET['amount']) && $_GET['amount'] !== '') || (isset($_GET['category']) && $_GET['category'] !== '')){
+    if(isset($_GET['amount']) && $_GET['amount']>=0 && $_GET['amount']< 97)
+    {
+      $amount = $_GET['amount'];
+    } 
+    if(isset($_GET['category']) && in_array($_GET['category'], $categories))
+    {
+      $category = $_GET['category'];
+    }
+  }
+  else {
+    echo 'd-none';
+  }
+  ?>
+   alert alert-success" role="alert">
     <h3 class="alert-heading">URL d'API généré : </h3>
-    <div class="alert alert-light">http://localhost:8888/scrapedDataAPI_PHP/api/api.php</div>
+    <div class="alert alert-light text-success">http://localhost:8888/scrapedDataAPI_PHP/api/api.php<?php
+    if (isset($amount) && isset($category)){
+      echo '?amount=' . $amount . '&category=' . $category;
+    } 
+    else if(isset($amount)){
+      echo '?amount=' . $amount;
+    }
+    else if(isset($category)){
+      echo '?category=' . $category;
+    }
+    ?></div>
   </div>
 </div>
 <div class="my-4 fluid-container">
@@ -20,7 +47,7 @@ ob_start(); ?>
   <p>
     L'url prend deux paramètre : la catégorie et le nombre de devinettes voulues.
   </p>
-  <div class="my-2">
+  <div class="my-4">
     <h4>Catégorie</h4>
     <p>
       Préciser la catégorie voulue, si aucune catégorie n'est précisée des devinettes de toutes les catégories seront renvoyées.
@@ -35,7 +62,7 @@ ob_start(); ?>
       ?>
     </ul>
   </div>
-  <div class="my-2">
+  <div class="my-4">
     <h4>Nombre de devinettes</h4>
     <p>
       Préciser le nombre de devinettes voulues, si aucun nombre n'est précisé le maximum de devinettes sera renvoyée.
@@ -50,6 +77,7 @@ ob_start(); ?>
     <div class="form-group">
       <label for="amount">Nombre de devinettes</label>
       <input class="form-control" type="number" min=0 max=96 name="amount" id="amount">
+      <small id="AmountHelp" class="form-text text-muted">Si il n'y pas suffisament de devinettes pour une catégorie donnée le maximum pour la catégorie sera renvoyé.</small>
     </div>
     <div class="form-group">
       <label for="category">Catégories</label>

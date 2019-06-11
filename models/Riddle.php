@@ -16,7 +16,13 @@ class Riddle {
   }
 
   // Get riddles
-  public function read($limit = '10000000') {
+  public function read($category, $limit) {
+    //testing where clause
+    $where = '';
+    if ($category !== ''){
+      $where = "WHERE category = '$category'";
+    }
+
     //Create query
     $query = 'SELECT
         id,
@@ -24,12 +30,13 @@ class Riddle {
         question,
         answer
       FROM
-        '. $this->table . '
+        ' . $this->table . '
+        ' . $where . ' 
       ORDER BY 
         RAND()
       LIMIT 
-        ' . $limit ;
-    
+        0, ' . $limit ;
+
     //Prepare statement
     $stmt = $this->conn->prepare($query);
 

@@ -8,7 +8,7 @@
     
     <body class="bg-dark text-light">
         <header class="navbar navbar-dark bg-primary">
-            <h1 class="text-light">Devinette API</h1>
+            <h1 class="text-light">Devinettes API</h1>
         </header>
         <div class="container">
             <?= $content ?>

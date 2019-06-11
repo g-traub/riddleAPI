@@ -13,8 +13,25 @@
   //Instantiate riddle object
   $riddle = new Riddle($db);
 
+  //Default params
+  $amount = 1000000;
+  $category = '';
+
+  //Test parameters
+  $categories = ['Alphabet', 'Animaux', 'Bizarre', 'Charade', 'Compliquée', 'Difficile', 'Facile', 'Localité', 'Meilleure', 'Monsieur et madame', 'Nourriture', 'Pays', 'Sport'];
+  
+  if(isset($_GET['amount']) && $_GET['amount']>=0 && $_GET['amount']< 97)
+  {
+    $amount = intval($_GET['amount']);
+    
+  } 
+  if(isset($_GET['category']) && in_array($_GET['category'], $categories))
+  {
+    $category = $_GET['category'];
+  }
+
   //Riddle query
-  $result = $riddle->read();
+  $result = $riddle->read($category, $amount);
   //Get row count
   $num = $result->rowCount();
 
