@@ -31,6 +31,10 @@ foreach($urls as $url){
     $question = $node->filter('.news p:nth-of-type(1)')->text();
     $answer = $node->filter('.news .reponse')->text();
     
+    $category = trim(preg_replace('/\s\s+/', ' ', $category));
+    $question = trim(preg_replace('/\s\s+/', ' ', $question));
+    $answer = trim(preg_replace('/\s\s+/', ' ', $answer));
+
     $riddles[] = '(\'' . addslashes($category) . '\', \'' . addslashes($question) . '\',  \'' . addslashes($answer) . '\')';
   }); 
 }

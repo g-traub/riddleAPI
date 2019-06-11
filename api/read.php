@@ -27,17 +27,17 @@
       extract($row);
 
       $riddle_item = [
-        'category' => $category,
-        'question' => $question,
-        'answer' => $answer
+        'category' => stripslashes($category),
+        'question' => stripslashes($question),
+        'answer' => stripslashes($answer)
       ];
 
       //Push to data
-      $riddles_arr['data'] = $riddleitem;
-
-      //Turn the array to JSON
-      echo json_encode($riddles_arr);
+      $riddles_arr['data'][] = $riddle_item;
     }
+    //Turn the array to JSON
+    echo json_encode($riddles_arr);
+
   } else {
     //No riddles
     echo json_encode(
