@@ -30,14 +30,24 @@ foreach($urls as $url){
     global $riddles, $category;
     $question = $node->filter('.news p:nth-of-type(1)')->text();
     $answer = $node->filter('.news .reponse')->text();
-  
-    $riddles[] = [
-      'category' => $category,
-      'question' => $question,
-      'answer' => $answer
-    ];
+    
+    $riddles[] = '(\'' . addslashes($category) . '\', \'' . addslashes($question) . '\',  \'' . addslashes($answer) . '\')';
   }); 
 }
+// var_dump($riddles);
 
-var_dump($riddles);
+//Send collected data to DB
+include_once 'config/Database.php';
+  //Instantiate DB & connect
+  $database = new Database();
+  $db = $database->connect();
 
+  //Create query
+  $query = 'INSERT INTO riddles (category, question, answer)
+    VALUES ' . implode(',', $riddles);
+
+  //Make query
+  $stmt = $db->query($query);
+  //Close
+  $stmt = null;
+  $db = null;
